@@ -14,6 +14,7 @@ grid = [
 ]
 answer = []
 message = []
+
 def start():
     for x in range(8):
         global grid
@@ -40,6 +41,8 @@ def show():
     os.system('cls')
     global grid
     print(answer)
+    title = open("title.txt", "r", encoding="utf-8")
+    print(title.read())
     global message
     for i in message:
         print(i)
