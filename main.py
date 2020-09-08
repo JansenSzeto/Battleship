@@ -14,6 +14,7 @@ grid = [
 ]
 answer = []
 message = []
+got = 0
 
 def start():
     for x in range(8):
@@ -25,17 +26,29 @@ def start():
         ran.append(ran_y)
         answer.append(ran)
     show()
+def win():
+    import time
+    import sys
+    os.system('cls')
+    won = open("won.txt", "r", encoding="utf-8")
+    print(won.read())
+    time.sleep(3)
+    sys.exit(0)
 def check(c):
     message.clear()
     global grid
     if c in answer:
         message.append("Hit!")
         grid[c[1]][c[0]] = "✓"
+        global got
+        got += 1
         pass
     else:
         message.append("Miss!")
         grid[c[1]][c[0]] = "✗"
         pass
+    if got == 2:
+        win()
     show()
 def show():
     os.system('cls')
@@ -43,6 +56,7 @@ def show():
     print(answer)
     title = open("title.txt", "r", encoding="utf-8")
     print(title.read())
+    print(got)
     global message
     for i in message:
         print(i)
