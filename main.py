@@ -13,6 +13,7 @@ grid = [
     ["○", "○", "○", "○", "○", "○", "○", "○", "○", "○"],
 ]
 answer = []
+message = []
 def random_coordinates():
     for x in range(8):
         global grid
@@ -22,15 +23,34 @@ def random_coordinates():
         ran.append(ran_x)
         ran.append(ran_y)
         answer.append(ran)
-        grid[ran_y][ran_x] = "⨳"
+        # grid[ran_y][ran_x] = "⨳"
 
 def show():
     os.system('clear')
+    global grid
     print(answer)
+    global message
+    for i in message:
+        print(i)
     for a in grid:
         print(" ".join(a))
     input_ = input().split()
-    x = input(input_[0])
-    y = input(input_[1])
+    message.clear()
+    try:
+        x = int(input_[0])
+        y = int(input_[1])
+        pass
+    except ValueError:
+        message.clear()
+        message.append("Invalid")
+        show()
+        message.clear()
+    try:
+        grid[y][x] = "X"
+        show()
+    except IndexError:
+        message.clear()
+        message.append("Out of range!")
+        show()
 random_coordinates()
 show()
