@@ -24,9 +24,20 @@ def random_coordinates():
         ran.append(ran_y)
         answer.append(ran)
         # grid[ran_y][ran_x] = "⨳"
-
+def check(c):
+    message.clear()
+    global grid
+    if c in answer:
+        message.append("Hit!")
+        grid[c[1]][c[0]] = "✓"
+        pass
+    else:
+        message.append("Miss!")
+        grid[c[1]][c[0]] = "✗"
+        pass
+    show()
 def show():
-    os.system('clear')
+    os.system('cls')
     global grid
     print(answer)
     global message
@@ -46,8 +57,10 @@ def show():
         show()
         message.clear()
     try:
-        grid[y][x] = "X"
-        show()
+        ans_list = []
+        ans_list.append(x)
+        ans_list.append(y)
+        check(ans_list)
     except IndexError:
         message.clear()
         message.append("Out of range!")
