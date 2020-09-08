@@ -23,7 +23,6 @@ def random_coordinates():
         ran.append(ran_x)
         ran.append(ran_y)
         answer.append(ran)
-        # grid[ran_y][ran_x] = "⨳"
 def check(c):
     message.clear()
     global grid
