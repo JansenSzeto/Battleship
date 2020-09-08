@@ -14,7 +14,7 @@ grid = [
 ]
 answer = []
 message = []
-def random_coordinates():
+def start():
     for x in range(8):
         global grid
         ran_x = random.randrange(0,10)
@@ -23,6 +23,7 @@ def random_coordinates():
         ran.append(ran_x)
         ran.append(ran_y)
         answer.append(ran)
+    show()
 def check(c):
     message.clear()
     global grid
@@ -64,5 +65,5 @@ def show():
         message.clear()
         message.append("Out of range!")
         show()
-random_coordinates()
-show()
+if __name__ == '__main__':
+    start()
