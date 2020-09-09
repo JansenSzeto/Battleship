@@ -15,9 +15,10 @@ grid = [
 answer = []
 message = []
 got = 0
+total = 3
 
 def start():
-    for x in range(8):
+    for x in range(total):
         global grid
         ran_x = random.randrange(0,10)
         ran_y = random.randrange(0,10)
@@ -37,17 +38,19 @@ def win():
 def check(c):
     message.clear()
     global grid
+    global answer
     if c in answer:
         message.append("Hit!")
         grid[c[1]][c[0]] = "✓"
         global got
         got += 1
+        answer.remove(c)
         pass
     else:
         message.append("Miss!")
         grid[c[1]][c[0]] = "✗"
         pass
-    if got == 2:
+    if got == total:
         win()
     show()
 def show():
