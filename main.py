@@ -42,11 +42,11 @@ def carrier():
         for k in range(5):
             answer.append([t+k, u])
     elif direction == 2:
-        t = random.randrange(6, 11)
+        t = random.randrange(5, 11)
         for k in range(5):
             answer.append([u, t-k])
     elif direction == 3:
-        t = random.randrange(6, 11)
+        t = random.randrange(5, 11)
         for k in range(5):
             answer.append([t-k, u])
 
