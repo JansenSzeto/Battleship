@@ -21,6 +21,7 @@ total = 5
 def distance():
     pass
 
+# ⚓
 def carrier():
     direction = random.randrange(0, 4)
     t = random.randrange(0, 6)
