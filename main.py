@@ -1,5 +1,7 @@
 import os
 import random
+import time
+import sys
 grid = [
     ["○", "○", "○", "○", "○", "○", "○", "○", "○", "○"],
     ["○", "○", "○", "○", "○", "○", "○", "○", "○", "○"],
@@ -15,21 +17,34 @@ grid = [
 answer = []
 message = []
 got = 0
-total = 3
+total = 5
+def distance():
+    pass
+
+def carrier():
+    direction = random.randrange(0, 4)
+    t = random.randrange(0, 6)
+    u = random.randrange(0,10)
+    global answer
+    if direction == 0:
+        for k in range(5):
+            answer.append([u, t+k])
+    elif direction == 1:
+        for k in range(5):
+            answer.append([t+k, u])
+    elif direction == 2:
+        t = random.randrange(6, 11)
+        for k in range(5):
+            answer.append([u, t-k])
+    elif direction == 3:
+        t = random.randrange(6, 11)
+        for k in range(5):
+            answer.append([t-k, u])
 
 def start():
-    for x in range(total):
-        global grid
-        ran_x = random.randrange(0,10)
-        ran_y = random.randrange(0,10)
-        ran = []
-        ran.append(ran_x)
-        ran.append(ran_y)
-        answer.append(ran)
+    carrier()
     show()
 def win():
-    import time
-    import sys
     os.system('cls')
     won = open("won.txt", "r", encoding="utf-8")
     print(won.read())
