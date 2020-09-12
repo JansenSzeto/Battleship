@@ -25,7 +25,7 @@ grid = [
 answer = []
 message = []
 got = 0
-total = 5
+total = 17
 a = 0
 def distance():
     pass
@@ -38,6 +38,7 @@ def ship():
     u = random.randrange(0, 10)
     k = (5, 4, 3, 3, 2)
     test = []
+    ok = True
     if direction == 0:
         t = random.randrange(0, 11-k[a])
         for x in range(k[a]):
@@ -56,16 +57,18 @@ def ship():
             test.append([u, t-x])
     for x in test:
         if x in answer:
-            ship()
-            break
+            ok = False
         else:
             pass
-    for z in test:
-        answer.append(z)
-    if a == 4:
-        pass
+    if ok == True:
+        for z in test:
+            answer.append(z)
+        if a == 4:
+            pass
+        else:
+            a += 1
+            ship()
     else:
-        a += 1
         ship()
             
 
@@ -73,26 +76,14 @@ def start():
     global answer
     answer.clear()
     ship()
-    global grid
-    grid = [
-    ["○", "○", "○", "○", "○", "○", "○", "○", "○", "○"],
-    ["○", "○", "○", "○", "○", "○", "○", "○", "○", "○"],
-    ["○", "○", "○", "○", "○", "○", "○", "○", "○", "○"],
-    ["○", "○", "○", "○", "○", "○", "○", "○", "○", "○"],
-    ["○", "○", "○", "○", "○", "○", "○", "○", "○", "○"],
-    ["○", "○", "○", "○", "○", "○", "○", "○", "○", "○"],
-    ["○", "○", "○", "○", "○", "○", "○", "○", "○", "○"],
-    ["○", "○", "○", "○", "○", "○", "○", "○", "○", "○"],
-    ["○", "○", "○", "○", "○", "○", "○", "○", "○", "○"],
-    ["○", "○", "○", "○", "○", "○", "○", "○", "○", "○"],
-    ]
-    for x in answer:
-        grid[x[1]][x[0]] = "⨂"
+    # for x in answer:
+        # grid[x[1]][x[0]] = "⨂"
     show()
 def win():
     os.system('cls')
-    won = open("won.txt", "r", encoding="utf-8")
-    print(won.read())
+    # won = open("won.txt", "r", encoding="utf-8")
+    # print(won.read())
+    print("-----You Won!-----")
     time.sleep(3)
     sys.exit(0)
 def check(c):
@@ -116,17 +107,15 @@ def check(c):
 def show():
     os.system('cls')
     global grid
-    print(answer)
-    title = open("title.txt", "r", encoding="utf-8")
-    print(title.read())
-    print(got)
+    # print(answer)
+    #title = open("title.txt", "r", encoding="utf-8")
+    # print(title.read())
+    print(f"""Hit: {got}""")
     global message
     for i in message:
         print(i)
     for a in grid:
         print(" ".join(a))
-    input()
-    start()
     input_ = input().split()
     message.clear()
     try:
