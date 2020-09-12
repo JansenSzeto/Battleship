@@ -26,32 +26,68 @@ answer = []
 message = []
 got = 0
 total = 5
+a = 0
 def distance():
     pass
 
 # ⚓ 
-def carrier():
-    direction = random.randrange(0, 4)
-    t = random.randrange(0, 6)
-    u = random.randrange(0,10)
+def ship():
     global answer
+    global a
+    direction = random.randrange(0, 4)
+    u = random.randrange(0, 10)
+    k = (5, 4, 3, 3, 2)
+    test = []
     if direction == 0:
-        for k in range(5):
-            answer.append([u, t+k])
+        t = random.randrange(0, 11-k[a])
+        for x in range(k[a]):
+            test.append([t+x, u])
     elif direction == 1:
-        for k in range(5):
-            answer.append([t+k, u])
+        t = random.randrange(0, 11-k[a])
+        for x in range(k[a]):
+            test.append([u, t+x])
     elif direction == 2:
-        t = random.randrange(5, 11)
-        for k in range(5):
-            answer.append([u, t-k])
+        t = random.randrange(9-k[a], 10)
+        for x in range(k[a]):
+            test.append([t-x, u])
     elif direction == 3:
-        t = random.randrange(5, 11)
-        for k in range(5):
-            answer.append([t-k, u])
+        t = random.randrange(9-k[a], 10)
+        for x in range(k[a]):
+            test.append([u, t-x])
+    for x in test:
+        if x in answer:
+            ship()
+            break
+        else:
+            pass
+    for z in test:
+        answer.append(z)
+    if a == 4:
+        pass
+    else:
+        a += 1
+        ship()
+            
 
 def start():
-    carrier()
+    global answer
+    answer.clear()
+    ship()
+    global grid
+    grid = [
+    ["○", "○", "○", "○", "○", "○", "○", "○", "○", "○"],
+    ["○", "○", "○", "○", "○", "○", "○", "○", "○", "○"],
+    ["○", "○", "○", "○", "○", "○", "○", "○", "○", "○"],
+    ["○", "○", "○", "○", "○", "○", "○", "○", "○", "○"],
+    ["○", "○", "○", "○", "○", "○", "○", "○", "○", "○"],
+    ["○", "○", "○", "○", "○", "○", "○", "○", "○", "○"],
+    ["○", "○", "○", "○", "○", "○", "○", "○", "○", "○"],
+    ["○", "○", "○", "○", "○", "○", "○", "○", "○", "○"],
+    ["○", "○", "○", "○", "○", "○", "○", "○", "○", "○"],
+    ["○", "○", "○", "○", "○", "○", "○", "○", "○", "○"],
+    ]
+    for x in answer:
+        grid[x[1]][x[0]] = "⨂"
     show()
 def win():
     os.system('cls')
@@ -89,6 +125,8 @@ def show():
         print(i)
     for a in grid:
         print(" ".join(a))
+    input()
+    start()
     input_ = input().split()
     message.clear()
     try:
@@ -100,6 +138,8 @@ def show():
         message.append("Invalid")
         show()
         message.clear()
+    except IndexError:
+        show()
     try:
         ans_list = []
         ans_list.append(x)
@@ -109,5 +149,5 @@ def show():
         message.clear()
         message.append("Out of range!")
         show()
-if __name__ == '__main__':
-    start()
+
+start()
