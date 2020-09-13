@@ -110,12 +110,16 @@ def show():
     # print(answer)
     #title = open("title.txt", "r", encoding="utf-8")
     # print(title.read())
+    print("Battleship")
     print(f"""Hit: {got}""")
     global message
     for i in message:
         print(i)
+    print("  0 1 2 3 4 5 6 7 8 9")
+    k = -1
     for a in grid:
-        print(" ".join(a))
+        k += 1
+        print(str(k)+" "+str(" ".join(a)))
     input_ = input().split()
     message.clear()
     try:
